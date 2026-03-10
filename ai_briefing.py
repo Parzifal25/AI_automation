@@ -1,39 +1,35 @@
-import os
-import requests
-from dotenv import load_dotenv
+from news_fetcher import fetch_news
+from ai_insights import generate_ai_insights
+from ai_tool_finder import get_producthunt_ai_tool
+from datetime import datetime
 
-load_dotenv()
 
-API_KEY = os.getenv("GEMINI_API_KEY")
+def generate_ai_briefing():
 
-MODEL_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
+    news = fetch_news()
+    insights = generate_ai_insights()
+    ai_tool = get_producthunt_ai_tool()
 
-def generate_brief(news):
+    today = datetime.now().strftime("%d %B %Y")
 
-    prompt = f"""
-    Create a Daily Personal AI Command Center.
+    briefing = f"""📊 AI COMMAND CENTER
+    Date: {today}
 
-    Include:
+    {ai_tool}
 
-    AI Tools Mastery
-    SaaS / Passive Income Experiment
-    Gym Suggestion
-    Reflection Question
+    🤖 AI DAILY INSIGHT
+    {insights}
 
-    Here are today's news headlines:
+    🏋️ Gym
+    Push Day
+    • Pushups – 3 sets
+    • Chest press – 4 sets
+    • Triceps dips – 3 sets
 
-    Tech: {news['tech']}
-    Geopolitics: {news['geopolitics']}
-    Indian Stock Market: {news['stocks']}
-    Movies: {news['movies']}
+    {news}
+
+    🧠 Reflection
+    What did I build today?
     """
 
-    payload = {
-        "contents":[{"parts":[{"text":prompt}]}]
-    }
-
-    r = requests.post(MODEL_URL,json=payload)
-
-    data = r.json()
-
-    return data["candidates"][0]["content"]["parts"][0]["text"]
+    return briefing
