@@ -4,19 +4,23 @@ import requests
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-def send_message(text):
+MAX_LEN = 4000
 
-    # Telegram limit ≈ 4096
-    if len(text) > 3900:
-        text = text[:3900] + "\n\n... (truncated)"
+
+def send_message(text):
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    payload = {
-        "chat_id": CHAT_ID,
-        "text": text
-    }
+    # split message into chunks
+    parts = [text[i:i+MAX_LEN] for i in range(0, len(text), MAX_LEN)]
 
-    r = requests.post(url, data=payload)
+    for part in parts:
 
-    print(r.text)
+        payload = {
+            "chat_id": CHAT_ID,
+            "text": part
+        }
+
+        r = requests.post(url, data=payload)
+
+        print(r.text)
