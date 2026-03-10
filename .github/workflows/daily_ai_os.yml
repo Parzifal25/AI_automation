@@ -10,15 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
-      - run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - run: python run_once.py
+      - name: Run AI OS
+        run: python run_once.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
