@@ -2,7 +2,7 @@ name: Daily AI OS
 
 on:
   schedule:
-    - cron: "8 6 * * *"   # 11:38 AM IST
+    - cron: "18 6 * * *"   # 11:38 AM IST
   workflow_dispatch:
 
 jobs:
