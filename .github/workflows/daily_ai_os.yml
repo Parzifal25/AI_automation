@@ -1,8 +1,8 @@
-name: Daily AI OS
+name: Daily AI OS Test
 
 on:
   schedule:
-    - cron: "/5 * * * *"   # 11:38 AM IST
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup Python
@@ -19,7 +19,8 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
 
       - name: Run AI OS
         run: python run_once.py
