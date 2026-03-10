@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 requests
 schedule
 python-dotenv
 feedparser
 pandas
 apscheduler
+=======
+requests
+schedule
+python-dotenv
+feedparser
+pandas
+apscheduler
+>>>>>>> fba49e2ed82e3084ce601d978ebec102dcec0d6f

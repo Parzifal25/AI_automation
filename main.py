@@ -22,7 +22,7 @@ def daily_run():
     print("Report sent")
 
 
-schedule.every().day.at("08:00").do(daily_run)
+schedule.every().minute.do(daily_run)
 
 while True:
 

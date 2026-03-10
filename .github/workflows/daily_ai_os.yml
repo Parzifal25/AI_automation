@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 name: Daily AI OS
 
 on:
   schedule:
     - cron: "30 2 * * *"   # runs every day
+=======
+name: Daily AI OS Test
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+>>>>>>> fba49e2ed82e3084ce601d978ebec102dcec0d6f
   workflow_dispatch:
 
 jobs:
@@ -10,7 +18,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+<<<<<<< HEAD
       - name: Checkout repo
+=======
+      - name: Checkout repository
+>>>>>>> fba49e2ed82e3084ce601d978ebec102dcec0d6f
         uses: actions/checkout@v3
 
       - name: Setup Python
@@ -19,11 +31,22 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
+<<<<<<< HEAD
         run: pip install -r requirements.txt
 
       - name: Run AI OS
+=======
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run AI OS
+        run: python run_once.py
+>>>>>>> fba49e2ed82e3084ce601d978ebec102dcec0d6f
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+<<<<<<< HEAD
         run: python main.py
+=======
+>>>>>>> fba49e2ed82e3084ce601d978ebec102dcec0d6f
