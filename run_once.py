@@ -1,13 +1,9 @@
-from news_fetcher import get_news
-from ai_briefing import generate_brief
-from telegram_sender import send_message
-import datetime
+def main():
+    from ai_briefing import generate_ai_briefing
+    from telegram_sender import send_telegram_message
 
-def run():
-    news = get_news()
-    report = generate_brief(news)
-    message = f"📊 AI Command Center {datetime.date.today()}\n\n{report}"
-    send_message(message)
+    report = generate_ai_briefing()
+    send_telegram_message(report)
 
 if __name__ == "__main__":
-    run()
+    main()
