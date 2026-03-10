@@ -2,7 +2,7 @@ name: Daily AI OS
 
 on:
   schedule:
-    - cron: "30 2 * * *"   # runs every day
+    - cron: "*/5 * * * *"   # runs every day
   workflow_dispatch:
 
 jobs:
